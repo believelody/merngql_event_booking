@@ -6,9 +6,7 @@ const { buildSchema } = require('graphql');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-const events = [
-
-]
+const events = [];
 
 app.use(bodyParser.json());
 app.use('/graphql', graphqlHTTP({
