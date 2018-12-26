@@ -1,0 +1,7 @@
+{
+    "env": {
+        "MONGO_USER": "believelody_merngql_event_booking",
+        "MONGO_PASSWORD": "pgx6eBQ8DbvmLxeW",
+        "MONGO_DB": "merngql_event_booking"
+    }
+}
