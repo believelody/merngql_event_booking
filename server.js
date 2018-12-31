@@ -27,6 +27,7 @@ app.use('/graphql', graphqlHTTP({
             _id: ID!
             email: String!
             password: String
+            createdEvents: [Event!]
         }
 
         input EventInput {
@@ -59,6 +60,7 @@ app.use('/graphql', graphqlHTTP({
         events: () => {
             return Event
                 .find()
+                .populate('creator')
                 .then(events => events.map(event => ({ ...event._doc, _id: event.id })))
                 .catch(err => {
                     console.error(err);
