@@ -5,7 +5,11 @@ const { transformBooking } = require('../helpers/booking');
 const { transformEvent } = require('../helpers/event');
 
 module.exports = {
-    bookings: async () => {
+    bookings: async (args, req) => {
+        if (!req.isAuth) {
+            throw new Error('Unauthenticated!');
+        }
+
         try {
             const bookings = await Booking.find();
 
@@ -15,7 +19,11 @@ module.exports = {
         }
     },
 
-    bookEvent: async args => {
+    bookEvent: async (args, req) => {
+        if (!req.isAuth) {
+            throw new Error('Unauthenticated!');
+        }
+
         const { eventId } = args;
         const event = await Event.findOne({ _id: eventId });
         const booking = new Booking({
@@ -27,7 +35,11 @@ module.exports = {
         return transformBooking(res);
     },
 
-    cancelBooking: async args => {
+    cancelBooking: async (args, req) => {
+        if (!req.isAuth) {
+            throw new Error('Unauthenticated!');
+        }
+        
         const { bookingId } = args;
 
         try {
